@@ -11,65 +11,49 @@ namespace INF2011S_Project.Business
     public class Booking
     {
         #region Data Members
-        private string refNum, bookingID;
-        private int numOfAdults, numOfChildren;
+        private int refNum, guestID, numOfAdults, numOfChildren, roomNum;
         private string specialRequests;
         private DateTime checkInDate, checkOutDate;
-        private Boolean checkedIn, checkedOut;
         #endregion
 
         #region Properties
-        public string getRefNum { get { return refNum; } set { refNum = value; } }
-        public string getBookingID { get { return bookingID; } set {  bookingID = value; } }
-        public int getNumOfAdults { get {  return numOfAdults; } set {  numOfAdults = value; } }
-        public int getNumOfChildren { get {  return numOfChildren; } set { numOfChildren = value; } }
-        public string getSpecialRequests { get {  return specialRequests; } set {  specialRequests = value; } }
-        public DateTime getCheckInDate { get {  return checkInDate; } set {  checkInDate = value; } }
-        public DateTime getCheckOutDate { get { return checkOutDate; } set { checkOutDate = value; } }
-        public Boolean getCheckedIn { get {  return checkedIn; } set {  checkedIn = value; } }
-        public Boolean getCheckedOut { get {  return checkedOut; } set { checkedOut = value; } }
+        public int ReferenceNumber { get { return refNum; } set { refNum = value; } }
+        public int GuestID { get { return guestID; } set {  guestID = value; } }
+        public int RoomNumber { get { return roomNum; } set { roomNum = value; } }
+        public int NumberOfAdults { get {  return numOfAdults; } set {  numOfAdults = value; } }
+        public int NumberOfChildren { get {  return numOfChildren; } set { numOfChildren = value; } }
+        public string SpecialRequests { get {  return specialRequests; } set {  specialRequests = value; } }
+        public DateTime CheckInDate { get {  return checkInDate; } set {  checkInDate = value; } }
+        public DateTime CheckOutDate { get { return checkOutDate; } set { checkOutDate = value; } }
         #endregion
 
         #region Constructor
         public Booking()
         {
-            this.refNum = string.Empty;
-            this.bookingID = string.Empty;
-            this.numOfAdults = 0;
-            this.numOfChildren = 0;
-            this.checkedOut = false;
-            this.checkedIn = false;
+            refNum = 0;
+            guestID = 0;
+            roomNum = 0;
+            specialRequests = null;
+            numOfAdults = 0;
+            numOfChildren = 0;
+
         }
-        public Booking(string RefNum, string SpecialRequests, DateTime CheckInDate, DateTime CheckOutDate, Boolean CheckedIn, Boolean CheckedOut)
+        public Booking(int RefNum, int GuestID, int RoomNum, string SpecialRequests, DateTime CheckInDate, DateTime CheckOutDate)
         {
             refNum = RefNum;
-            bookingID = GenerateID();
+            guestID = GuestID;
+            roomNum = RoomNum;
             specialRequests = SpecialRequests;
             checkInDate = CheckInDate;
             checkOutDate = CheckOutDate;
-            checkedIn = CheckedIn;
-            checkedOut = CheckedOut;
         }
         #endregion
 
-        #region Methods 
-        public string GenerateID()
-// NEEDS CHANGING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        #region Methods
+        public int calculateLengthOfStay()
         {
-            int length = 7;
-            // creating a StringBuilder object()
-            StringBuilder str_build = new StringBuilder();
-            Random random = new Random();
-            char letter;
 
-            for (int i = 0; i < length; i++)
-            {
-                double flt = random.NextDouble();
-                int shift = Convert.ToInt32(Math.Floor(25 * flt));
-                letter = Convert.ToChar(shift + 65);
-                str_build.Append(letter);
-            }
-            return str_build.ToString();
         }
+        #endregion
     }
 }

@@ -16,5 +16,10 @@ namespace INF2011S_Project
         {
             InitializeComponent();
         }
+
+        private void LogIn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

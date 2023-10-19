@@ -61,19 +61,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\Account.cs" />
+    <Compile Include="Business\AccountHandler.cs" />
     <Compile Include="Business\Booking.cs" />
-    <Compile Include="Business\BookingController.cs" />
+    <Compile Include="Business\BookingHandler.cs" />
     <Compile Include="Business\Guest.cs" />
+    <Compile Include="Business\GuestHandler.cs" />
     <Compile Include="Business\Receptionist.cs" />
+    <Compile Include="Business\Room.cs" />
+    <Compile Include="Business\RoomHandler.cs" />
+    <Compile Include="Data\BookingDB.cs" />
+    <Compile Include="Data\DB.cs" />
+    <Compile Include="Data\GuestDB.cs" />
+    <Compile Include="Data\ReceptionistDB.cs" />
+    <Compile Include="Data\RoomDB.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HotelDatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs" />
+    <Compile Include="Presentation\LoginScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\LoginScreen.Designer.cs">
+      <DependentUpon>LoginScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\LoginScreen.resx">
+      <DependentUpon>LoginScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -83,6 +110,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="HotelDatabaseDataSet.xsc">
+      <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="HotelDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelDatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HotelDatabaseDataSet.xss">
+      <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -96,10 +134,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Presentation\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="HotelDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
