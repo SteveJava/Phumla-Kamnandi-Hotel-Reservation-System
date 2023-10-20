@@ -38,21 +38,16 @@ namespace INF2011S_Project.Business
             numOfChildren = 0;
 
         }
-        public Booking(int RefNum, int GuestID, int RoomNum, string SpecialRequests, DateTime CheckInDate, DateTime CheckOutDate)
+        public Booking(int RefNum, int GuestID, int NoAdults, int NoChildren, int RoomNum, string SpecialRequests, DateTime CheckInDate, DateTime CheckOutDate)
         {
             refNum = RefNum;
             guestID = GuestID;
+            numOfAdults = NoAdults;
+            numOfChildren = NoChildren;
             roomNum = RoomNum;
             specialRequests = SpecialRequests;
             checkInDate = CheckInDate;
             checkOutDate = CheckOutDate;
-        }
-        #endregion
-
-        #region Methods
-        public int calculateLengthOfStay()
-        {
-
         }
         #endregion
     }

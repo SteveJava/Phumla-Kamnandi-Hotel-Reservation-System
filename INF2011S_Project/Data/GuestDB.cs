@@ -42,7 +42,7 @@ namespace INF2011S_Project.Data
             guests = new Collection<Guest>();
 
             FillDataSet(sqlLocal1, table1);
-            AddToCollection(table1);
+            Add2Collection(table1);
         }
 
         public DataSet GetDataSet()
@@ -50,7 +50,7 @@ namespace INF2011S_Project.Data
             return dsMain;
         }
 
-        private void AddToCollection(string table)
+        private void Add2Collection(string table)
         {
             DataRow myRow = null;
             Guest guest;

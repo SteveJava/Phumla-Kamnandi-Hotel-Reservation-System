@@ -11,8 +11,8 @@ namespace INF2011S_Project.Business
     public class GuestHandler
     {
         #region Data Members
-        GuestDB guestDB;
-        Collection<Guest> guests;
+        private GuestDB guestDB;
+        private Collection<Guest> guests;
         #endregion
 
         #region Properties
@@ -36,7 +36,10 @@ namespace INF2011S_Project.Business
 
         #region Methods
         // NEED TO HAVE A GENERATE ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+        public int generateID()
+        {
+            return 0;
+        }
         #endregion
 
         #region Database Communication.

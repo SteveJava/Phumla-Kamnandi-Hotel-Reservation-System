@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace INF2011S_Project.Business
 {
-    public class Receptionist:Person
+    public class Receptionist
     {
         #region Data Members
         private string empID, passWord;

@@ -70,23 +70,20 @@
     <Compile Include="Business\Receptionist.cs" />
     <Compile Include="Business\Room.cs" />
     <Compile Include="Business\RoomHandler.cs" />
+    <Compile Include="Data\AccountDB.cs" />
     <Compile Include="Data\BookingDB.cs" />
     <Compile Include="Data\DB.cs" />
     <Compile Include="Data\GuestDB.cs" />
     <Compile Include="Data\ReceptionistDB.cs" />
     <Compile Include="Data\RoomDB.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="HotelDatabaseDataSet.cs">
+      <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="HotelDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Person.cs" />
     <Compile Include="Presentation\LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,9 +92,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>

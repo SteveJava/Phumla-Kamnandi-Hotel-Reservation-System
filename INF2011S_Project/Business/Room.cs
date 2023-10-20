@@ -11,24 +11,20 @@ namespace INF2011S_Project.Business
     {
         #region Data Members
         private int roomNum;
-        private decimal rate;
         #endregion
 
         #region Properties
         public int RoomNum { get { return roomNum; } set {  roomNum = value; } }
-        public decimal Rate { get { return rate; } set { rate = value; } }
         #endregion
 
         #region Constructor
         public Room()
         {
             roomNum = 0;
-            rate = 0;
         }
-        public Room(int RoomNum, decimal Rate)
+        public Room(int RoomNum)
         {
             this.RoomNum = RoomNum;
-            this.Rate = Rate;
         }
         #endregion
 
