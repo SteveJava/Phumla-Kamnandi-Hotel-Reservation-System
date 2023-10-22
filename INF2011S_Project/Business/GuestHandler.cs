@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,29 +17,25 @@ namespace INF2011S_Project.Business
         #endregion
 
         #region Properties
-        public Collection<Guest> AllGuests
-        {
-            get
-            {
-                return guests;
-            }
-        }
+        public Collection<Guest> AllGuests { get { return guests; } }
         #endregion
 
         #region Constructor
         public GuestHandler()
         {
-          //  guestDB = new GuestDB();
-          //  guests = guestDB.AllGuests;
+            guestDB = new GuestDB();
+            guests = guestDB.AllGuests;
         }
 
         #endregion
 
         #region Methods
         // NEED TO HAVE A GENERATE ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        public int generateID()
+         public int generateID()
         {
-            return 0;
+            GuestDB guestDB = new GuestDB();
+            guests = guestDB.AllGuests;
+            return guests.Count() + 1;
         }
         #endregion
 
@@ -108,6 +105,18 @@ namespace INF2011S_Project.Business
             if (guests.Any(x => x.GuestID == gID))
             {
                 foundGuest = guests.First(x => x.GuestID == gID);
+            }
+            return foundGuest;
+        }
+
+        public Guest FindName(string fName, string sName)
+        {
+            GuestDB guestDB = new GuestDB();
+            guests = guestDB.AllGuests;
+            Guest foundGuest = null;
+            if (guests.Any(x => (x.FirstName == fName) && (x.SecondName == sName)))
+            {
+                foundGuest = guests.First(x => (x.FirstName == fName) && (x.SecondName == sName));
             }
             return foundGuest;
         }

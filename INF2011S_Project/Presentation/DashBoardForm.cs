@@ -17,14 +17,18 @@ namespace INF2011S_Project.Presentation
     {
         EditBookingForm editBookingForm;
         EditGuestForm editGuestForm;
+        NewBookingForm newBookingForm;
+        GuestHandler guestHandler;
         public DashBoardForm()
         {
             InitializeComponent();
+            guestHandler = new GuestHandler();
         }
 
         private void makeABookingButton_Click(object sender, EventArgs e)
         {
-            
+            newBookingForm = new NewBookingForm();
+            newBookingForm.Show();
         }
 
         private void editBookingButton_Click(object sender, EventArgs e)

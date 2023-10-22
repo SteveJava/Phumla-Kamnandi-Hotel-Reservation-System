@@ -44,7 +44,7 @@ namespace INF2011S_Project.Business
 
         #region Database Communication.
 
-        public Receptionist RecordAccount(Receptionist receptionist)
+        public Receptionist RecordReceptionist(Receptionist receptionist)
         {
             receptionistDB = new ReceptionistDB();
             receptionists = receptionistDB.AllReceptionists;
@@ -121,6 +121,17 @@ namespace INF2011S_Project.Business
             if (receptionists.Any(x => x.EmpID == aID))
             {
                 foundAccount = receptionists.First(x => x.EmpID == aID);
+            }
+            return foundAccount;
+        }
+        public Receptionist FindPassWord(string password)
+        {
+            ReceptionistDB receptionistDB = new ReceptionistDB();
+            receptionists = receptionistDB.AllReceptionists;
+            Receptionist foundAccount = null;
+            if (receptionists.Any(x => x.Password.Equals(password)))
+            {
+                foundAccount = receptionists.First(x => x.Password.Equals(password));
             }
             return foundAccount;
         }

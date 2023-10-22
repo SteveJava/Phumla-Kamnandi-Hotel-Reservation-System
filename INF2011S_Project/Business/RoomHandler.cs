@@ -11,8 +11,8 @@ namespace INF2011S_Project.Business
     public class RoomHandler
     {
         #region Data Members
-        RoomDB roomDB;
-        Collection<Room> rooms;
+        private RoomDB roomDB;
+        private Collection<Room> rooms;
         #endregion
 
         #region Properties
@@ -74,12 +74,12 @@ namespace INF2011S_Project.Business
         {
             int index = 0;
             //check if it is the first guest
-            bool found = (rooms[index].RoomNum == roomNum);
+            bool found = (rooms[index].RoomNumber == roomNum);
             int count = rooms.Count;
             while (!(found) && (index < rooms.Count - 1))
             {
                 index = index + 1;
-                found = (rooms[index].RoomNum == roomNum);   // this will be TRUE if found
+                found = (rooms[index].RoomNumber == roomNum);   // this will be TRUE if found
             }
             return rooms[index];
         }
@@ -88,11 +88,11 @@ namespace INF2011S_Project.Business
         {
             int counter = 0;
             bool found = false;
-            found = (aRoom.RoomNum == rooms[counter].RoomNum);   //using a Boolean Expression to initialise found
+            found = (aRoom.RoomNumber == rooms[counter].RoomNumber);   //using a Boolean Expression to initialise found
             while (!(found) & counter < rooms.Count - 1)
             {
                 counter += 1;
-                found = (aRoom.RoomNum == rooms[counter].RoomNum);
+                found = (aRoom.RoomNumber == rooms[counter].RoomNumber);
             }
             if (found)
             {

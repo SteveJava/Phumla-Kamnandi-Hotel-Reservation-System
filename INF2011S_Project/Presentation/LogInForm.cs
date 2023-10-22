@@ -25,8 +25,14 @@ namespace INF2011S_Project
 
         private void logInButton_Click(object sender, EventArgs e)
         {
-            dashBoardForm = new DashBoardForm();
-            dashBoardForm.Show();
+            Receptionist receptionist = new Receptionist();
+            ReceptionistHandler receptionistHandler = new ReceptionistHandler();
+            if ((receptionistHandler.Find(Convert.ToInt32(employeeIDTextBox.Text)) != null) && (receptionistHandler.FindPassWord((passWordTextBox.Text)) != null)) 
+            {
+                dashBoardForm = new DashBoardForm();
+                dashBoardForm.Show();
+            }
+            
         }
     }
 }

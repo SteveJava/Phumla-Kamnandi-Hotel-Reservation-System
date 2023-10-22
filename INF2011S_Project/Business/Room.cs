@@ -14,7 +14,7 @@ namespace INF2011S_Project.Business
         #endregion
 
         #region Properties
-        public int RoomNum { get { return roomNum; } set {  roomNum = value; } }
+        public int RoomNumber { get { return roomNum; } set {  roomNum = value; } }
         #endregion
 
         #region Constructor
@@ -24,7 +24,7 @@ namespace INF2011S_Project.Business
         }
         public Room(int RoomNum)
         {
-            this.RoomNum = RoomNum;
+            this.roomNum = RoomNum;
         }
         #endregion
 

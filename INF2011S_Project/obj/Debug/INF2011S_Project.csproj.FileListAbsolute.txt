@@ -14,3 +14,4 @@ C:\Users\dylan\OneDrive\Documents\GitHub\INF2011S_Project\INF2011S_Project\obj\D
 C:\Users\dylan\OneDrive\Documents\GitHub\INF2011S_Project\INF2011S_Project\obj\Debug\INF2011S_Project.LogInForm.resources
 C:\Users\dylan\OneDrive\Documents\GitHub\INF2011S_Project\INF2011S_Project\obj\Debug\INF2011S_Project.Presentation.EditGuestForm.resources
 C:\Users\dylan\OneDrive\Documents\GitHub\INF2011S_Project\INF2011S_Project\obj\Debug\INF2011S_Project.Presentation.DashBoardForm.resources
+C:\Users\dylan\OneDrive\Documents\GitHub\INF2011S_Project\INF2011S_Project\obj\Debug\INF2011S_Project.Presentation.NewBookingForm.resources

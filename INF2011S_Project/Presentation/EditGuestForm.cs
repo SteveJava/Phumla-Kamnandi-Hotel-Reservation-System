@@ -61,22 +61,25 @@ namespace INF2011S_Project.Presentation
             guest.HomeAddress = addressTextBox.Text;
         }
         #endregion
-        private void showAllGuestsButton_Click(object sender, EventArgs e)
+
+        private void showAllButton_Click(object sender, EventArgs e)
         {
-           
+            guestDB = new GuestDB();
+            guestDB.RetrieveAllGuestsFromDB();
+            dataGridView1.DataSource = guestDB.GetDataSet();
+            dataGridView1.DataMember = "Guest";
         }
 
-        private void editButton_Click(object sender, EventArgs e)
+        private void updateGuestButton_Click_1(object sender, EventArgs e)
         {
             state = FormState.Update;
             guestHandler = new GuestHandler();
             guest = guestHandler.Find(Convert.ToInt32(guestIDTextBox.Text));
-            PopulateGuestDetails(guest);
-
             Console.WriteLine("If you click confirm, the information in the TextBoxes will be used");
+            PopulateGuestDetails(guest);            
         }
 
-        private void deleteGuestButton_Click(object sender, EventArgs e)
+        private void deleteGuestButton_Click_1(object sender, EventArgs e)
         {
             state = FormState.Delete;
             guestHandler = new GuestHandler();
@@ -84,9 +87,8 @@ namespace INF2011S_Project.Presentation
             PopulateGuestDetails(guest);
         }
 
-        private void confirmChangesButton_Click(object sender, EventArgs e)
+        private void confirmChangesButton_Click_1(object sender, EventArgs e)
         {
-
 
             if (state == FormState.Update)
             {
@@ -99,14 +101,6 @@ namespace INF2011S_Project.Presentation
             }
             guestHandler.FinalizeChanges(guest);
             state = FormState.View;
-        }
-
-        private void showAllButton_Click(object sender, EventArgs e)
-        {
-            guestDB = new GuestDB();
-            guestDB.RetrieveAllGuestsFromDB();
-            dataGridView1.DataSource = guestDB.GetDataSet();
-            dataGridView1.DataMember = "Guest";
         }
     }
 }

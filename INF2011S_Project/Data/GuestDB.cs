@@ -32,7 +32,7 @@ namespace INF2011S_Project.Data
         #region Utility Methods
         public void RetrieveAllGuests()
         {
-            dsMain.Tables["Guests"].Clear();
+            dsMain.Tables["Guest"].Clear();
             RetrieveAllGuestsFromDB();
         }
 
@@ -69,7 +69,7 @@ namespace INF2011S_Project.Data
                     guest.CellPhone = Convert.ToString(myRow["CellPhone"]);
                     guest.HomeAddress = Convert.ToString(myRow["HomeAddress"]);
                     guest.EmailAddress = Convert.ToString(myRow["EmailAddress"]);
-                    //add booking to bookings collection
+                    //add guest to guest collection
                     guests.Add(guest);
 
                 }
@@ -82,14 +82,12 @@ namespace INF2011S_Project.Data
             if (operation == DB.DBOperation.Add)
             {
                 aRow["GuestID"] = aGuest.GuestID;  //NOTE square brackets to indicate index of collections of fields in row.
+                aRow["FirstName"] = aGuest.FirstName;
+                aRow["SecondName"] = aGuest.SecondName;
+                aRow["CellPhone"] = aGuest.CellPhone;
+                aRow["HomeAddress"] = aGuest.HomeAddress;
+                aRow["EmailAddress"] = aGuest.EmailAddress;
             }
-
-            aRow["FirstName"] = aGuest.FirstName;
-            aRow["SecondName"] = aGuest.SecondName;
-            aRow["CellPhone"] = aGuest.CellPhone;
-            aRow["HomeAddress"] = aGuest.HomeAddress;
-            aRow["EmailAddress"] = aGuest.EmailAddress;
-
         }
 
         private int FindRow(Guest aGuest, string table)
@@ -251,7 +249,7 @@ namespace INF2011S_Project.Data
         {
             //Command used to insert values into the Bookings table..
 
-            daMain.InsertCommand = new SqlCommand("INSERT into Guest (FirstName, SecondName, HomeAddress, EmailAddress, CellPhonePhone) VALUES (@FirstName, @SecondName, @HomeAddress, @EmailAddress, @CellPhone)", cnMain);
+            daMain.InsertCommand = new SqlCommand("INSERT into Guest (GuestID, FirstName, SecondName, HomeAddress, EmailAddress, CellPhone) VALUES (@GuestID, @FirstName, @SecondName, @HomeAddress, @EmailAddress, @CellPhone)", cnMain);
             Build_INSERT_Parameters(aGuest);
         }
 
@@ -260,7 +258,7 @@ namespace INF2011S_Project.Data
             //Command that must be used to insert values into bookings table
             //The GuestID and BookingReference cannot be changed
 
-            daMain.UpdateCommand = new SqlCommand("UPDATE Guest SET FirstName = @FirstName, SecondName = @SecondName, HomeAddress =@HomeAddress, EmailAddress = @EmailAddress, CellPhone =@CellPhone " + "WHERE GuestID = @GuestID", cnMain);
+            daMain.UpdateCommand = new SqlCommand("UPDATE Guest SET GuestID = @GuestID, FirstName = @FirstName, SecondName = @SecondName, HomeAddress =@HomeAddress, EmailAddress = @EmailAddress, CellPhone =@CellPhone " + "WHERE GuestID = @GuestID", cnMain);
             Build_UPDATE_Parameters(aGuest);
         }
 

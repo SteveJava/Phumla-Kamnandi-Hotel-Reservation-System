@@ -35,10 +35,11 @@ namespace INF2011S_Project.Business
         #endregion
 
         #region Methods
-        // NEED TO HAVE A GENERATE ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public int generateID()
         {
-            return 0;
+            AccountDB accountDB = new AccountDB();
+            accounts = accountDB.AllAccounts;
+            return accounts.Count() + 1;
         }
         #endregion
 

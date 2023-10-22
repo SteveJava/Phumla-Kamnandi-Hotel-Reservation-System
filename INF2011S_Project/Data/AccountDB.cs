@@ -147,7 +147,7 @@ namespace INF2011S_Project.Data
             //Create Parameters to communicate with SQL INSERT...add the input parameter and set its properties.
             SqlParameter param = default(SqlParameter);
 
-            param = new SqlParameter("@AccountID", SqlDbType.Int, 10, "GuestID");
+            param = new SqlParameter("@AccountID", SqlDbType.Int, 10, "AccountID");
             daMain.InsertCommand.Parameters.Add(param);
 
             param = new SqlParameter("@GuestID", SqlDbType.Int, 10, "GuestID");
@@ -181,7 +181,7 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 16, "CCNO");
+            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 16, "CCNo");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
@@ -213,7 +213,7 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 16, "CCNO");
+            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 16, "CCNo");
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 

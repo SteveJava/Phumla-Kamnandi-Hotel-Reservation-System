@@ -58,7 +58,7 @@ namespace INF2011S_Project.Data
                     room = new Room();
 
                     //Obtain each Room attribute from the specific field in the row in the table
-                    room.RoomNum = Convert.ToInt32(myRow["RoomNumber"]);
+                    room.RoomNumber = Convert.ToInt32(myRow["RoomNumber"]);
                     //add booking to bookings collection
                     rooms.Add(room);
 
@@ -71,7 +71,7 @@ namespace INF2011S_Project.Data
 
             if (operation == DB.DBOperation.Add)
             {
-                aRow["RoomNumber"] = aRoom.RoomNum;
+                aRow["RoomNumber"] = aRoom.RoomNumber;
             }
         }
 
@@ -87,7 +87,7 @@ namespace INF2011S_Project.Data
                 if (!(myRow.RowState == DataRowState.Deleted))
                 {
                     //check if roomNumber equal to what we are looking for
-                    if (aRoom.RoomNum == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["RoomNumber"]))
+                    if (aRoom.RoomNumber == Convert.ToInt32(dsMain.Tables[table].Rows[rowIndex]["RoomNumber"]))
                     {
                         returnValue = rowIndex;
                     }
@@ -144,7 +144,7 @@ namespace INF2011S_Project.Data
             SqlParameter param = default(SqlParameter);
 
             //testing the booking reference of record that needs to change with the original guestID of the record
-            param = new SqlParameter("Original_@RoomNumber", SqlDbType.Int, 15, "RoomNumber");
+            param = new SqlParameter("@RoomNumber", SqlDbType.Int, 15, "RoomNumber");
             param.SourceVersion = DataRowVersion.Original;
             daMain.UpdateCommand.Parameters.Add(param);
 
@@ -153,7 +153,7 @@ namespace INF2011S_Project.Data
         private void Create_UPDATE_Command(Room aRoom)
         {
 
-            daMain.UpdateCommand = new SqlCommand("UPDATE Room SET RoomNumber =@RoomNumber " + "WHERE RoomNumber = @Original_RoomNumber", cnMain);
+            daMain.UpdateCommand = new SqlCommand("UPDATE Room SET RoomNumber = @RoomNumber " + "WHERE RoomNumber = @RoomNumber", cnMain);
             Build_UPDATE_Parameters(aRoom);
         }
 

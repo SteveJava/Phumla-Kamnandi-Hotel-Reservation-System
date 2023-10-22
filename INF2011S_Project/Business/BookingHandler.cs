@@ -15,6 +15,8 @@ namespace INF2011S_Project.Business
         private BookingDB bookingDB;
         private Collection<Booking> bookings;
         public static int currentReferenceNumber;
+        enum Seasonality { Low = 550, Mid = 750, High = 995 }
+        private Seasonality season;
         #endregion
                 
         #region Properties
@@ -30,16 +32,65 @@ namespace INF2011S_Project.Business
         #endregion
 
         #region Methods 
-        // NEED TO COMPELTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        public Room FindAvailableRoom(DateTime CheckIn, DateTime CheckOut)
+        public Collection<Room> FindAvailableRooms(DateTime CheckIn, DateTime CheckOut)
         {
-            return null;
+            RoomHandler roomHandler = new RoomHandler();
+
+            Collection<Room> roomlist = new Collection<Room>();
+            foreach (Booking book in this.bookings)
+            {
+                bool isAvailable = (book.CheckInDate <= book.CheckInDate && CheckOut >= book.CheckOutDate) || // Booking completely within the specific range
+                                    (CheckIn >= book.CheckInDate && CheckOut <= book.CheckOutDate) || // Booking completely covers the specific range
+                                    (CheckIn >= book.CheckInDate && CheckIn < book.CheckOutDate ||      // Partial overlap at the beggining
+                                    (CheckOut > book.CheckInDate && CheckOut <= book.CheckOutDate)); // Partial overlap at the end
+                if (isAvailable)
+                {
+                    int roomID = book.RoomNumber;
+                    Room room = roomHandler.Find(roomID);
+                    if (!roomlist.Contains(room))
+                    {
+                        roomlist.Add(room);
+                    }
+                }
+            }
+
+            Collection<Room> availablelist = roomHandler.AllRooms;
+            foreach (Room room in roomlist)
+            {
+                if (availablelist.Contains(room))
+                {
+                    availablelist.Remove(room);
+                }
+                
+            }
+            return availablelist;
         }
 
         public int CalculateCost(DateTime CheckIn, DateTime CheckOut)
         {
-            return 0;
+            TimeSpan duration = CheckOut - CheckIn;
+            int daysOfStay = duration.Days;
+
+            switch (season) 
+            {
+                case Seasonality.Low:
+                    return daysOfStay * (int)season;
+                case Seasonality.Mid:
+                    return daysOfStay * (int)season;
+                case Seasonality.High:
+                    return daysOfStay * (int)season;
+
+                default: return 0;
+            }
         }
+
+        public int generateReferenceNumber()
+        {
+            BookingDB bookingDB = new BookingDB();
+            bookings = bookingDB.AllBookings;
+            return bookings.Count() + 1;
+        }
+
         #endregion
 
         #region Database Communication.

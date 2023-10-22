@@ -20,20 +20,13 @@ namespace INF2011S_Project.Data
         #endregion
 
         #region Property Method: Collection
-        public Collection<Booking> AllBookings
-        {
-            get
-            {
-                return bookings;
-            }
-        }
+        public Collection<Booking> AllBookings { get { return bookings; } }
 
         #endregion
 
         #region Constructor
         public BookingDB() : base()
         {
-            bookings = new Collection<Booking>();
             RetrieveAllBookingsFromDB();
         }
         #endregion
@@ -98,15 +91,15 @@ namespace INF2011S_Project.Data
 
             if (operation == DB.DBOperation.Add)
             {
-                aRow["ReferenceNumber"] = aBooking.ReferenceNumber;  //NOTE square brackets to indicate index of collections of fields in row.
-            }
-            aRow["GuestID"] = aBooking.GuestID;
-            aRow["NumberOfAdults"] = aBooking.NumberOfAdults;
-            aRow["NumberOfChildren"] = aBooking.NumberOfChildren;
-            aRow["SpecialRequests"] = aBooking.SpecialRequests;
-            aRow["CheckInDate"] = aBooking.CheckInDate;
-            aRow["CheckOutDate"] = aBooking.CheckOutDate;
-
+                aRow["ReferenceNumber"] = 11;//aBooking.ReferenceNumber;  //NOTE square brackets to indicate index of collections of fields in row.
+                aRow["GuestID"] = aBooking.GuestID;
+                aRow["NumberOfAdults"] = aBooking.NumberOfAdults;
+                aRow["NumberOfChildren"] = aBooking.NumberOfChildren;
+                aRow["SpecialRequests"] = aBooking.SpecialRequests;
+                aRow["CheckInDate"] = aBooking.CheckInDate;
+                aRow["CheckOutDate"] = aBooking.CheckOutDate;
+                aRow["RoomNumber"] = aBooking.RoomNumber;
+            }   
         }
 
         private int FindRow(Booking aBooking, string table)
@@ -275,8 +268,8 @@ namespace INF2011S_Project.Data
         {
             //Command used to insert values into the Bookings table..
 
-            daMain.InsertCommand = new SqlCommand("INSERT into Booking (GuestID, ReferenceNumber, RoomNumber, CheckInDate, CheckOutDate, NumberOfAdults, NumberOfChildren, SpecialRequests)" +
-                " VALUES (@GuestID, @ReferenceNumber, @RoomNumber, @CheckInDate, @CheckOutDate, @NumberOfAdults, @NumberOfChildren, @SpecialRequests)", cnMain);
+            daMain.InsertCommand = new SqlCommand("INSERT into Booking (ReferenceNumber, GuestID, RoomNumber, CheckInDate, CheckOutDate, NumberOfAdults, NumberOfChildren, SpecialRequests)" +
+                " VALUES (@ReferenceNumber, @GuestID, @RoomNumber, @CheckInDate, @CheckOutDate, @NumberOfAdults, @NumberOfChildren, @SpecialRequests)", cnMain);
             Build_INSERT_Parameters(aBooking);
         }
 
@@ -285,7 +278,7 @@ namespace INF2011S_Project.Data
             //Command that must be used to insert values into bookings table
             //The GuestID and BookingReference cannot be changed
 
-            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET GuestID =@GuestID, ReferenceNumber =@ReferenceNumber, RoomNumber =@RoomNumber, CheckInDate =@CheckInDate, " +
+            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET ReferenceNumber =@ReferenceNumber, GuestID =@GuestID, RoomNumber =@RoomNumber, CheckInDate =@CheckInDate, " +
                 "CheckOutDate =@CheckOutDate, NumberOfAdults =@NumberOfAdults, NumberOfChildren =@NumberOfChildren, SpecialRequests =@SpecialRequests " + "WHERE ReferenceNumber = @ReferenceNumber", cnMain);
             Build_UPDATE_Parameters(aBooking);
         }

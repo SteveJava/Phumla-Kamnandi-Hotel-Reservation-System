@@ -36,6 +36,8 @@ namespace INF2011S_Project.Business
             specialRequests = null;
             numOfAdults = 0;
             numOfChildren = 0;
+            checkInDate = DateTime.MinValue;
+            checkOutDate = DateTime.MinValue;
 
         }
         public Booking(int RefNum, int GuestID, int NoAdults, int NoChildren, int RoomNum, string SpecialRequests, DateTime CheckInDate, DateTime CheckOutDate)

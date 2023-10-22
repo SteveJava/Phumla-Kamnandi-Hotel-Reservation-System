@@ -64,6 +64,7 @@
             this.confirmChangesButton.TabIndex = 32;
             this.confirmChangesButton.Text = "Çonfirm Changes";
             this.confirmChangesButton.UseVisualStyleBackColor = true;
+            this.confirmChangesButton.Click += new System.EventHandler(this.confirmChangesButton_Click_1);
             // 
             // deleteGuestButton
             // 
@@ -73,6 +74,7 @@
             this.deleteGuestButton.TabIndex = 31;
             this.deleteGuestButton.Text = "Delete Guest";
             this.deleteGuestButton.UseVisualStyleBackColor = true;
+            this.deleteGuestButton.Click += new System.EventHandler(this.deleteGuestButton_Click_1);
             // 
             // addressTextBox
             // 
@@ -248,6 +250,7 @@
             this.updateGuestButton.TabIndex = 34;
             this.updateGuestButton.Text = "Update Guest";
             this.updateGuestButton.UseVisualStyleBackColor = true;
+            this.updateGuestButton.Click += new System.EventHandler(this.updateGuestButton_Click_1);
             // 
             // guestIDTextBox
             // 

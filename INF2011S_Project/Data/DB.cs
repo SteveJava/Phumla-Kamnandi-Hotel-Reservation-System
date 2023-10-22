@@ -50,7 +50,7 @@ namespace INF2011S_Project.Data
             {
                 daMain = new SqlDataAdapter(aSQLstring, cnMain);
                 cnMain.Open();
-                //dsMain.Clear();
+                dsMain.Clear();
                 daMain.Fill(dsMain, aTable);
                 cnMain.Close();
             }
