@@ -153,7 +153,7 @@ namespace INF2011S_Project.Data
             param = new SqlParameter("@GuestID", SqlDbType.Int, 10, "GuestID");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 20, "CCNO");
+            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 16, "CCNO");
             daMain.InsertCommand.Parameters.Add(param);
 
             param = new SqlParameter("@CCDate", SqlDbType.NVarChar, 50, "CCDate");
@@ -181,7 +181,7 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 20, "CCNO");
+            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 16, "CCNO");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
@@ -213,7 +213,7 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 20, "CCNO");
+            param = new SqlParameter("@CCNo", SqlDbType.NVarChar, 16, "CCNO");
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
@@ -272,7 +272,7 @@ namespace INF2011S_Project.Data
             return success;
         }
 
-        public bool UpdateGuestDataSource(Account aAccount)
+        public bool UpdateAccountDataSource(Account aAccount)
         {
             bool success = true;
             Create_UPDATE_Command(aAccount);
@@ -280,10 +280,18 @@ namespace INF2011S_Project.Data
             return success;
         }
 
-        public bool InsertGuestDataSource(Account aAccount)
+        public bool InsertAccountDataSource(Account aAccount)
         {
             bool success = true;
             Create_INSERT_Command(aAccount);
+            success = UpdateDataSource(sqlLocal1, table1);
+            return success;
+        }
+
+        public bool DeleteAccountDataSource(Account account)
+        {
+            bool success = true;
+            Create_DELETE_Command(account);
             success = UpdateDataSource(sqlLocal1, table1);
             return success;
         }

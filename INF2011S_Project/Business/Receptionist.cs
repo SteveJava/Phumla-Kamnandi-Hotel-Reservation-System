@@ -9,32 +9,27 @@ namespace INF2011S_Project.Business
     public class Receptionist
     {
         #region Data Members
-        private string empID, passWord;
+        private string passWord;
+        private int empID;
         #endregion
 
         #region Properties
-        public string EmpID { get { return empID; } set { empID = value; } }
-        public string PassWord { get { return passWord; } set { passWord = value; } }
+        public int EmpID { get { return empID; } set { empID = value; } }
+        public string Password { get { return passWord; } set { passWord = value; } }
         #endregion
 
         #region Constructor 
         public Receptionist() 
         {
-            empID = string.Empty;
+            empID = 0;
             passWord = string.Empty;
         }
-        public Receptionist(string empID, string passWord)
+        public Receptionist(int EmpID, string PassWord)
         {
-            EmpID = empID;
-            PassWord = passWord;
+            empID = EmpID;
+            passWord = PassWord;
         }
         #endregion
-
-        #region ToString
-        public override string ToString()
-        {
-            return base.ToString() + "\nEmployeeID: " + empID;
-        }
 
     }
 }

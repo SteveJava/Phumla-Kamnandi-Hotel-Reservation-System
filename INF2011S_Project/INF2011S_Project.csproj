@@ -68,6 +68,7 @@
     <Compile Include="Business\Guest.cs" />
     <Compile Include="Business\GuestHandler.cs" />
     <Compile Include="Business\Receptionist.cs" />
+    <Compile Include="Business\ReceptionistHandler.cs" />
     <Compile Include="Business\Room.cs" />
     <Compile Include="Business\RoomHandler.cs" />
     <Compile Include="Data\AccountDB.cs" />
@@ -76,24 +77,48 @@
     <Compile Include="Data\GuestDB.cs" />
     <Compile Include="Data\ReceptionistDB.cs" />
     <Compile Include="Data\RoomDB.cs" />
-    <Compile Include="HotelDatabaseDataSet.cs">
-      <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
+    <Compile Include="Presentation\EditBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\EditBookingForm.Designer.cs">
+      <DependentUpon>EditBookingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\LogInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\LogInForm.Designer.cs">
+      <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HotelDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HotelDatabaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\LoginScreen.cs">
+    <Compile Include="Presentation\EditGuestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\LoginScreen.Designer.cs">
-      <DependentUpon>LoginScreen.cs</DependentUpon>
+    <Compile Include="Presentation\EditGuestForm.Designer.cs">
+      <DependentUpon>EditGuestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\DashBoardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\DashBoardForm.Designer.cs">
+      <DependentUpon>DashBoardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Presentation\LoginScreen.resx">
-      <DependentUpon>LoginScreen.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\EditBookingForm.resx">
+      <DependentUpon>EditBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\LogInForm.resx">
+      <DependentUpon>LogInForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\EditGuestForm.resx">
+      <DependentUpon>EditGuestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\DashBoardForm.resx">
+      <DependentUpon>DashBoardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

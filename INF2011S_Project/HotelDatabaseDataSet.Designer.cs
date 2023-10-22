@@ -427,6 +427,8 @@ namespace INF2011S_Project {
             
             private global::System.Data.DataColumn columnbalance;
             
+            private global::System.Data.DataColumn columnGuestID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public AccountDataTable() {
@@ -494,6 +496,14 @@ namespace INF2011S_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn GuestIDColumn {
+                get {
+                    return this.columnGuestID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -529,13 +539,14 @@ namespace INF2011S_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AccountRow AddAccountRow(int accountID, string CCNo, string CCDate, int balance) {
+            public AccountRow AddAccountRow(int accountID, string CCNo, string CCDate, long balance, int GuestID) {
                 AccountRow rowAccountRow = ((AccountRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         accountID,
                         CCNo,
                         CCDate,
-                        balance};
+                        balance,
+                        GuestID};
                 rowAccountRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAccountRow);
                 return rowAccountRow;
@@ -569,6 +580,7 @@ namespace INF2011S_Project {
                 this.columnCCNo = base.Columns["CCNo"];
                 this.columnCCDate = base.Columns["CCDate"];
                 this.columnbalance = base.Columns["balance"];
+                this.columnGuestID = base.Columns["GuestID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -580,8 +592,10 @@ namespace INF2011S_Project {
                 base.Columns.Add(this.columnCCNo);
                 this.columnCCDate = new global::System.Data.DataColumn("CCDate", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCCDate);
-                this.columnbalance = new global::System.Data.DataColumn("balance", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnbalance = new global::System.Data.DataColumn("balance", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbalance);
+                this.columnGuestID = new global::System.Data.DataColumn("GuestID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGuestID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnaccountID}, true));
                 this.columnaccountID.AllowDBNull = false;
@@ -589,8 +603,9 @@ namespace INF2011S_Project {
                 this.columnCCNo.AllowDBNull = false;
                 this.columnCCNo.MaxLength = 20;
                 this.columnCCDate.AllowDBNull = false;
-                this.columnCCDate.MaxLength = 20;
+                this.columnCCDate.MaxLength = 50;
                 this.columnbalance.AllowDBNull = false;
+                this.columnGuestID.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1699,8 +1714,6 @@ namespace INF2011S_Project {
             
             private global::System.Data.DataColumn columnRoomNumber;
             
-            private global::System.Data.DataColumn columnRate;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RoomDataTable() {
@@ -1744,14 +1757,6 @@ namespace INF2011S_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn RateColumn {
-                get {
-                    return this.columnRate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1787,11 +1792,10 @@ namespace INF2011S_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RoomRow AddRoomRow(int RoomNumber, decimal Rate) {
+            public RoomRow AddRoomRow(int RoomNumber) {
                 RoomRow rowRoomRow = ((RoomRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        RoomNumber,
-                        Rate};
+                        RoomNumber};
                 rowRoomRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRoomRow);
                 return rowRoomRow;
@@ -1822,7 +1826,6 @@ namespace INF2011S_Project {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnRoomNumber = base.Columns["RoomNumber"];
-                this.columnRate = base.Columns["Rate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1830,13 +1833,10 @@ namespace INF2011S_Project {
             private void InitClass() {
                 this.columnRoomNumber = new global::System.Data.DataColumn("RoomNumber", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRoomNumber);
-                this.columnRate = new global::System.Data.DataColumn("Rate", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnRoomNumber}, true));
                 this.columnRoomNumber.AllowDBNull = false;
                 this.columnRoomNumber.Unique = true;
-                this.columnRate.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2012,12 +2012,23 @@ namespace INF2011S_Project {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int balance {
+            public long balance {
                 get {
-                    return ((int)(this[this.tableAccount.balanceColumn]));
+                    return ((long)(this[this.tableAccount.balanceColumn]));
                 }
                 set {
                     this[this.tableAccount.balanceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int GuestID {
+                get {
+                    return ((int)(this[this.tableAccount.GuestIDColumn]));
+                }
+                set {
+                    this[this.tableAccount.GuestIDColumn] = value;
                 }
             }
         }
@@ -2316,17 +2327,6 @@ namespace INF2011S_Project {
                 }
                 set {
                     this[this.tableRoom.RoomNumberColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal Rate {
-                get {
-                    return ((decimal)(this[this.tableRoom.RateColumn]));
-                }
-                set {
-                    this[this.tableRoom.RateColumn] = value;
                 }
             }
         }
@@ -2630,40 +2630,45 @@ namespace INF2011S_Project.HotelDatabaseDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("CCNo", "CCNo");
             tableMapping.ColumnMappings.Add("CCDate", "CCDate");
             tableMapping.ColumnMappings.Add("balance", "balance");
+            tableMapping.ColumnMappings.Add("GuestID", "GuestID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Account] WHERE (([accountID] = @Original_accountID) AND ([CCNo" +
                 "] = @Original_CCNo) AND ([CCDate] = @Original_CCDate) AND ([balance] = @Original" +
-                "_balance))";
+                "_balance) AND ([GuestID] = @Original_GuestID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_accountID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accountID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCNo", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCDate", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_balance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCDate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_balance", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GuestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Account] ([accountID], [CCNo], [CCDate], [balance]) VALUES (@a" +
-                "ccountID, @CCNo, @CCDate, @balance);\r\nSELECT accountID, CCNo, CCDate, balance FR" +
-                "OM Account WHERE (accountID = @accountID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Account] ([accountID], [CCNo], [CCDate], [balance], [GuestID])" +
+                " VALUES (@accountID, @CCNo, @CCDate, @balance, @GuestID);\r\nSELECT accountID, CCN" +
+                "o, CCDate, balance, GuestID FROM Account WHERE (accountID = @accountID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accountID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCNo", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCDate", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@balance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCDate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@balance", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GuestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Account] SET [accountID] = @accountID, [CCNo] = @CCNo, [CCDate] = @CCDate, [balance] = @balance WHERE (([accountID] = @Original_accountID) AND ([CCNo] = @Original_CCNo) AND ([CCDate] = @Original_CCDate) AND ([balance] = @Original_balance));
-SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @accountID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Account] SET [accountID] = @accountID, [CCNo] = @CCNo, [CCDate] = @CCDate, [balance] = @balance, [GuestID] = @GuestID WHERE (([accountID] = @Original_accountID) AND ([CCNo] = @Original_CCNo) AND ([CCDate] = @Original_CCDate) AND ([balance] = @Original_balance) AND ([GuestID] = @Original_GuestID));
+SELECT accountID, CCNo, CCDate, balance, GuestID FROM Account WHERE (accountID = @accountID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accountID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCNo", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCDate", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@balance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CCDate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@balance", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GuestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_accountID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accountID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCNo", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCDate", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_balance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CCDate", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CCDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_balance", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "balance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GuestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GuestID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2679,7 +2684,7 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT accountID, CCNo, CCDate, balance FROM dbo.Account";
+            this._commandCollection[0].CommandText = "SELECT accountID, CCNo, CCDate, balance, GuestID FROM dbo.Account";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2740,7 +2745,7 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_accountID, string Original_CCNo, string Original_CCDate, int Original_balance) {
+        public virtual int Delete(int Original_accountID, string Original_CCNo, string Original_CCDate, long Original_balance, int Original_GuestID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_accountID));
             if ((Original_CCNo == null)) {
                 throw new global::System.ArgumentNullException("Original_CCNo");
@@ -2754,7 +2759,8 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
             else {
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_CCDate));
             }
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_balance));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((long)(Original_balance));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_GuestID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2775,7 +2781,7 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int accountID, string CCNo, string CCDate, int balance) {
+        public virtual int Insert(int accountID, string CCNo, string CCDate, long balance, int GuestID) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(accountID));
             if ((CCNo == null)) {
                 throw new global::System.ArgumentNullException("CCNo");
@@ -2789,7 +2795,8 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(CCDate));
             }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(balance));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((long)(balance));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(GuestID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2810,7 +2817,7 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int accountID, string CCNo, string CCDate, int balance, int Original_accountID, string Original_CCNo, string Original_CCDate, int Original_balance) {
+        public virtual int Update(int accountID, string CCNo, string CCDate, long balance, int GuestID, int Original_accountID, string Original_CCNo, string Original_CCDate, long Original_balance, int Original_GuestID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(accountID));
             if ((CCNo == null)) {
                 throw new global::System.ArgumentNullException("CCNo");
@@ -2824,21 +2831,23 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(CCDate));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(balance));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_accountID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((long)(balance));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(GuestID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_accountID));
             if ((Original_CCNo == null)) {
                 throw new global::System.ArgumentNullException("Original_CCNo");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_CCNo));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_CCNo));
             }
             if ((Original_CCDate == null)) {
                 throw new global::System.ArgumentNullException("Original_CCDate");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_CCDate));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_CCDate));
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_balance));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((long)(Original_balance));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_GuestID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2859,8 +2868,8 @@ SELECT accountID, CCNo, CCDate, balance FROM Account WHERE (accountID = @account
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string CCNo, string CCDate, int balance, int Original_accountID, string Original_CCNo, string Original_CCDate, int Original_balance) {
-            return this.Update(Original_accountID, CCNo, CCDate, balance, Original_accountID, Original_CCNo, Original_CCDate, Original_balance);
+        public virtual int Update(string CCNo, string CCDate, long balance, int GuestID, int Original_accountID, string Original_CCNo, string Original_CCDate, long Original_balance, int Original_GuestID) {
+            return this.Update(Original_accountID, CCNo, CCDate, balance, GuestID, Original_accountID, Original_CCNo, Original_CCDate, Original_balance, Original_GuestID);
         }
     }
     
@@ -4167,32 +4176,25 @@ SELECT empID, passWord FROM Receptionist WHERE (empID = @empID)";
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Room";
             tableMapping.ColumnMappings.Add("RoomNumber", "RoomNumber");
-            tableMapping.ColumnMappings.Add("Rate", "Rate");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Room] WHERE (([RoomNumber] = @Original_RoomNumber) AND ([Rate]" +
-                " = @Original_Rate))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Room] WHERE (([RoomNumber] = @Original_RoomNumber))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Room] ([RoomNumber], [Rate]) VALUES (@RoomNumber, @Rate);\r\nSEL" +
-                "ECT RoomNumber, Rate FROM Room WHERE (RoomNumber = @RoomNumber)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Room] ([RoomNumber]) VALUES (@RoomNumber);\r\nSELECT RoomNumber " +
+                "FROM Room WHERE (RoomNumber = @RoomNumber)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Room] SET [RoomNumber] = @RoomNumber, [Rate] = @Rate WHERE (([RoomN" +
-                "umber] = @Original_RoomNumber) AND ([Rate] = @Original_Rate));\r\nSELECT RoomNumbe" +
-                "r, Rate FROM Room WHERE (RoomNumber = @RoomNumber)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Room] SET [RoomNumber] = @RoomNumber WHERE (([RoomNumber] = @Origin" +
+                "al_RoomNumber));\r\nSELECT RoomNumber FROM Room WHERE (RoomNumber = @RoomNumber)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoomNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RoomNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoomNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4208,7 +4210,7 @@ SELECT empID, passWord FROM Receptionist WHERE (empID = @empID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT RoomNumber, Rate FROM dbo.Room";
+            this._commandCollection[0].CommandText = "SELECT RoomNumber FROM dbo.Room";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4269,9 +4271,8 @@ SELECT empID, passWord FROM Receptionist WHERE (empID = @empID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_RoomNumber, decimal Original_Rate) {
+        public virtual int Delete(int Original_RoomNumber) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_RoomNumber));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((decimal)(Original_Rate));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4292,9 +4293,8 @@ SELECT empID, passWord FROM Receptionist WHERE (empID = @empID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int RoomNumber, decimal Rate) {
+        public virtual int Insert(int RoomNumber) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(RoomNumber));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(Rate));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4315,11 +4315,9 @@ SELECT empID, passWord FROM Receptionist WHERE (empID = @empID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int RoomNumber, decimal Rate, int Original_RoomNumber, decimal Original_Rate) {
+        public virtual int Update(int RoomNumber, int Original_RoomNumber) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(RoomNumber));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(Rate));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_RoomNumber));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(Original_Rate));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_RoomNumber));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4340,8 +4338,8 @@ SELECT empID, passWord FROM Receptionist WHERE (empID = @empID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(decimal Rate, int Original_RoomNumber, decimal Original_Rate) {
-            return this.Update(Original_RoomNumber, Rate, Original_RoomNumber, Original_Rate);
+        public virtual int Update(int Original_RoomNumber) {
+            return this.Update(Original_RoomNumber, Original_RoomNumber);
         }
     }
     

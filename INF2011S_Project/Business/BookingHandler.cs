@@ -116,7 +116,16 @@ namespace INF2011S_Project.Business
         //This method receives a booking ref as a parameter; finds the booking object in the collection of bookings and then returns this object
         public Booking Find(int bookRef)
         {
+            int index = 0;
+            bool found = (bookings[index].ReferenceNumber == bookRef);
 
+            while (!(found) && (index < bookings.Count - 1))
+            {
+                index = index + 1;
+                found = (bookings[index].ReferenceNumber == bookRef);
+            }
+            return bookings[index];
+/*
             BookingDB bookingDB = new BookingDB();
             bookings = bookingDB.AllBookings;
             Booking foundBooking = null;
@@ -125,7 +134,7 @@ namespace INF2011S_Project.Business
                 foundBooking = bookings.First(x => x.ReferenceNumber == bookRef);
                 currentReferenceNumber = foundBooking.ReferenceNumber;
             }
-            return foundBooking;
+            return foundBooking;*/
         }
 
         public int FindIndex(Booking aBooking)

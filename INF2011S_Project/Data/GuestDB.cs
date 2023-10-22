@@ -65,10 +65,10 @@ namespace INF2011S_Project.Data
                     //Obtain each guest attribute from the specific field in the row in the table
                     guest.GuestID = Convert.ToInt32(myRow["GuestID"]);
                     guest.FirstName = Convert.ToString(myRow["FirstName"]);
-                    guest.SecondName = Convert.ToString(myRow["Surname"]);
-                    guest.CellPhone = Convert.ToString(myRow["Phone"]);
-                    guest.HomeAddress = Convert.ToString(myRow["Address"]);
-                    guest.EmailAddress = Convert.ToString(myRow["Email"]);
+                    guest.SecondName = Convert.ToString(myRow["SecondName"]);
+                    guest.CellPhone = Convert.ToString(myRow["CellPhone"]);
+                    guest.HomeAddress = Convert.ToString(myRow["HomeAddress"]);
+                    guest.EmailAddress = Convert.ToString(myRow["EmailAddress"]);
                     //add booking to bookings collection
                     guests.Add(guest);
 
@@ -85,10 +85,10 @@ namespace INF2011S_Project.Data
             }
 
             aRow["FirstName"] = aGuest.FirstName;
-            aRow["Surname"] = aGuest.SecondName;
-            aRow["Phone"] = aGuest.CellPhone;
-            aRow["Address"] = aGuest.HomeAddress;
-            aRow["Email"] = aGuest.EmailAddress;
+            aRow["SecondName"] = aGuest.SecondName;
+            aRow["CellPhone"] = aGuest.CellPhone;
+            aRow["HomeAddress"] = aGuest.HomeAddress;
+            aRow["EmailAddress"] = aGuest.EmailAddress;
 
         }
 
@@ -165,7 +165,7 @@ namespace INF2011S_Project.Data
             param = new SqlParameter("@CellPhone", SqlDbType.NVarChar, 15, "CellPhone");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@Address", SqlDbType.NVarChar, 100, "Address");
+            param = new SqlParameter("@HomeAddress", SqlDbType.NVarChar, 100, "HomeAddress");
             daMain.InsertCommand.Parameters.Add(param);
 
         }
@@ -188,7 +188,7 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@SecondName", SqlDbType.NVarChar, 60, "Second");
+            param = new SqlParameter("@SecondName", SqlDbType.NVarChar, 60, "SecondName");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
@@ -226,7 +226,7 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@SecondName", SqlDbType.NVarChar, 60, "Second");
+            param = new SqlParameter("@SecondName", SqlDbType.NVarChar, 60, "SecondName");
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
@@ -251,7 +251,7 @@ namespace INF2011S_Project.Data
         {
             //Command used to insert values into the Bookings table..
 
-            daMain.InsertCommand = new SqlCommand("INSERT into Guest (FirstName, FirstName, HomeAddress, EmailAddress, CellPhonePhone) VALUES (@FirstName, @SecondName, @HomeAddress, @EmailAddress, @CellPhone)", cnMain);
+            daMain.InsertCommand = new SqlCommand("INSERT into Guest (FirstName, SecondName, HomeAddress, EmailAddress, CellPhonePhone) VALUES (@FirstName, @SecondName, @HomeAddress, @EmailAddress, @CellPhone)", cnMain);
             Build_INSERT_Parameters(aGuest);
         }
 

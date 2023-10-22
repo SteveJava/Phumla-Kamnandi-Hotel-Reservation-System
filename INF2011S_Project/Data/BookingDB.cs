@@ -72,11 +72,16 @@ namespace INF2011S_Project.Data
                     //Obtain each booking attribute from the specific field in the row in the table
                     booking.GuestID = Convert.ToInt32(myRow["GuestID"]);
                     booking.ReferenceNumber = Convert.ToInt32(myRow["ReferenceNumber"]);
-                    booking.CheckInDate = Convert.ToDateTime(myRow["CheckIn"]);
-                    booking.CheckOutDate = Convert.ToDateTime(myRow["CheckOut"]);
+                    booking.CheckInDate = Convert.ToDateTime(myRow["CheckInDate"]);
+                    booking.CheckOutDate = Convert.ToDateTime(myRow["CheckOutDate"]);
                     booking.RoomNumber = Convert.ToInt32(myRow["RoomNumber"]);
                     booking.NumberOfAdults = Convert.ToInt32(myRow["NumberOfAdults"]);
-                    booking.NumberOfChildren = Convert.ToInt32(myRow["NumberOfChildren"]);
+                    object value = (myRow["NumberOfChildren"]);
+                    if (value != DBNull.Value)
+                    {
+                        booking.NumberOfChildren = Convert.ToInt32(value);
+
+                    }
                     booking.SpecialRequests = Convert.ToString(myRow["SpecialRequests"]);
                     //add booking to bookings collection
                     bookings.Add(booking);
@@ -99,8 +104,8 @@ namespace INF2011S_Project.Data
             aRow["NumberOfAdults"] = aBooking.NumberOfAdults;
             aRow["NumberOfChildren"] = aBooking.NumberOfChildren;
             aRow["SpecialRequests"] = aBooking.SpecialRequests;
-            aRow["CheckIn"] = aBooking.CheckInDate;
-            aRow["CheckOut"] = aBooking.CheckOutDate;
+            aRow["CheckInDate"] = aBooking.CheckInDate;
+            aRow["CheckOutDate"] = aBooking.CheckOutDate;
 
         }
 
@@ -172,10 +177,10 @@ namespace INF2011S_Project.Data
             param = new SqlParameter("@RoomNumber", SqlDbType.Int, 10, "RoomNumber");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CheckIn", SqlDbType.DateTime, 10, "CheckIn");
+            param = new SqlParameter("@CheckInDate", SqlDbType.DateTime, 10, "CheckInDate");
             daMain.InsertCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CheckOut", SqlDbType.DateTime, 10, "CheckOut");
+            param = new SqlParameter("@CheckOutDate", SqlDbType.DateTime, 10, "CheckOutDate");
             daMain.InsertCommand.Parameters.Add(param);
 
             param = new SqlParameter("@NumberOfAdults", SqlDbType.Int, 10, "NumberOfAdults");
@@ -206,11 +211,11 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CheckIn", SqlDbType.DateTime, 10, "CheckIn");
+            param = new SqlParameter("@CheckInDate", SqlDbType.DateTime, 10, "CheckInDate");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CheckOut", SqlDbType.DateTime, 10, "CheckOut");
+            param = new SqlParameter("@CheckOutDate", SqlDbType.DateTime, 10, "CheckOutDate");
             param.SourceVersion = DataRowVersion.Current;
             daMain.UpdateCommand.Parameters.Add(param);
 
@@ -244,11 +249,11 @@ namespace INF2011S_Project.Data
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CheckIn", SqlDbType.DateTime, 10, "CheckIn");
+            param = new SqlParameter("@CheckInDate", SqlDbType.DateTime, 10, "CheckInDate");
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
-            param = new SqlParameter("@CheckOut", SqlDbType.DateTime, 10, "CheckOut");
+            param = new SqlParameter("@CheckOutDate", SqlDbType.DateTime, 10, "CheckOutDate");
             param.SourceVersion = DataRowVersion.Current;
             daMain.DeleteCommand.Parameters.Add(param);
 
@@ -270,8 +275,8 @@ namespace INF2011S_Project.Data
         {
             //Command used to insert values into the Bookings table..
 
-            daMain.InsertCommand = new SqlCommand("INSERT into Booking (GuestID, ReferenceNumber, RoomNumber, CheckIn, CheckOut, NumberOfAdults, NumberOfChildren, SpecialRequests)" +
-                " VALUES (@GuestID, @ReferenceNumber, @RoomNumber, @CheckIn, @CheckOut, @NumberOfAdults, @NumberOfChildren, @SpecialRequests)", cnMain);
+            daMain.InsertCommand = new SqlCommand("INSERT into Booking (GuestID, ReferenceNumber, RoomNumber, CheckInDate, CheckOutDate, NumberOfAdults, NumberOfChildren, SpecialRequests)" +
+                " VALUES (@GuestID, @ReferenceNumber, @RoomNumber, @CheckInDate, @CheckOutDate, @NumberOfAdults, @NumberOfChildren, @SpecialRequests)", cnMain);
             Build_INSERT_Parameters(aBooking);
         }
 
@@ -280,8 +285,8 @@ namespace INF2011S_Project.Data
             //Command that must be used to insert values into bookings table
             //The GuestID and BookingReference cannot be changed
 
-            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET GuestID =@GuestID, ReferenceNumber =@ReferenceNumber, RoomNumber =@RoomNumber, CheckIn =@CheckIn, " +
-                "CheckOut =@CheckOut, NumberOfAdults =@NumberOfAdults, NumberOfChildren =@NumberOfChildren, SpecialRequests =@SpecialRequests " + "WHERE ReferenceNumber = @ReferenceNumber", cnMain);
+            daMain.UpdateCommand = new SqlCommand("UPDATE Booking SET GuestID =@GuestID, ReferenceNumber =@ReferenceNumber, RoomNumber =@RoomNumber, CheckInDate =@CheckInDate, " +
+                "CheckOutDate =@CheckOutDate, NumberOfAdults =@NumberOfAdults, NumberOfChildren =@NumberOfChildren, SpecialRequests =@SpecialRequests " + "WHERE ReferenceNumber = @ReferenceNumber", cnMain);
             Build_UPDATE_Parameters(aBooking);
         }
 
