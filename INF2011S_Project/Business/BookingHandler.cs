@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,7 +41,7 @@ namespace INF2011S_Project.Business
             Collection<Room> roomlist = new Collection<Room>();
             foreach (Booking book in this.bookings)
             {
-                bool isAvailable = (book.CheckInDate <= book.CheckInDate && CheckOut >= book.CheckOutDate) || // Booking completely within the specific range
+                bool isAvailable = (CheckIn <= book.CheckInDate && CheckOut >= book.CheckOutDate) || // Booking completely within the specific range
                                     (CheckIn >= book.CheckInDate && CheckOut <= book.CheckOutDate) || // Booking completely covers the specific range
                                     (CheckIn >= book.CheckInDate && CheckIn < book.CheckOutDate ||      // Partial overlap at the beggining
                                     (CheckOut > book.CheckInDate && CheckOut <= book.CheckOutDate)); // Partial overlap at the end
@@ -66,23 +68,88 @@ namespace INF2011S_Project.Business
             return availablelist;
         }
 
+        public Collection<Room> FindArrival(DateTime CheckIn)
+        {
+            RoomHandler roomHandler = new RoomHandler();
+
+            Collection<Room> roomlist = new Collection<Room>();
+            foreach (Booking book in this.bookings)
+            {
+                bool isAvailable = (book.CheckInDate == CheckIn);
+                if (isAvailable)
+                {
+                    int roomID = book.RoomNumber;
+                    Room room = roomHandler.Find(roomID);
+                    if (!roomlist.Contains(room))
+                    {
+                        roomlist.Add(room);
+                    }
+                }
+            }
+
+            Collection<Room> availablelist = roomHandler.AllRooms;
+            foreach (Room room in roomlist)
+            {
+                if (availablelist.Contains(room))
+                {
+                    availablelist.Remove(room);
+                }
+
+            }
+            return availablelist;
+        }
+
+        public void CalculateSeasonality(DateTime CheckIn, DateTime CheckOut)
+        {
+            // Define the start and end dates for each season.
+            DateTime lowSeasonStart = new DateTime(CheckIn.Year, 12, 1);
+            DateTime lowSeasonEnd = new DateTime(CheckIn.Year, 12, 7);
+            DateTime midSeasonStart = new DateTime(CheckIn.Year, 12, 8);
+            DateTime midSeasonEnd = new DateTime(CheckIn.Year, 12, 16);
+            DateTime highSeasonStart = new DateTime(CheckIn.Year, 12, 17);
+            DateTime highSeasonEnd = new DateTime(CheckIn.Year, 12, 31);
+
+            // Check if the stay falls within the specified date ranges.
+            if (CheckIn >= lowSeasonStart && CheckOut <= lowSeasonEnd)
+            {
+                season = Seasonality.Low;
+            }
+            else if (CheckIn >= midSeasonStart && CheckOut <= midSeasonEnd)
+            {
+                season = Seasonality.Mid;
+            }
+            else if (CheckIn >= highSeasonStart && CheckOut <= highSeasonEnd)
+            {
+                season = Seasonality.High;
+            }
+            else { season = Seasonality.Low; }
+         }
+
         public int CalculateCost(DateTime CheckIn, DateTime CheckOut)
         {
             TimeSpan duration = CheckOut - CheckIn;
             int daysOfStay = duration.Days;
-
-            switch (season) 
+            decimal cost = 0;
+            CalculateSeasonality(CheckIn, CheckOut);
+            switch (season)
             {
                 case Seasonality.Low:
-                    return daysOfStay * (int)season;
+                    cost = daysOfStay * (int)season;
+                    break;
                 case Seasonality.Mid:
-                    return daysOfStay * (int)season;
+                    cost = daysOfStay * (int)season;
+                    break;
                 case Seasonality.High:
-                    return daysOfStay * (int)season;
-
-                default: return 0;
+                    cost = daysOfStay * (int)season;
+                    break;
+                default:
+                    cost = daysOfStay * 100; // Set a default cost when season is not specified.
+                    break;
             }
+
+            return (int)cost; // Assuming cost is an integer value.
         }
+
 
         public int generateReferenceNumber()
         {
@@ -176,17 +243,8 @@ namespace INF2011S_Project.Business
                 found = (bookings[index].ReferenceNumber == bookRef);
             }
             return bookings[index];
-/*
-            BookingDB bookingDB = new BookingDB();
-            bookings = bookingDB.AllBookings;
-            Booking foundBooking = null;
-            if (bookings.Any(x => x.ReferenceNumber == bookRef))
-            {
-                foundBooking = bookings.First(x => x.ReferenceNumber == bookRef);
-                currentReferenceNumber = foundBooking.ReferenceNumber;
-            }
-            return foundBooking;*/
-        }
+
+         }
 
         public int FindIndex(Booking aBooking)
         {

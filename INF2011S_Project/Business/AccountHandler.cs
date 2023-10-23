@@ -28,14 +28,14 @@ namespace INF2011S_Project.Business
         #region Constructor
         public AccountHandler()
         {
-            //  accountDB = new AccountDB();
-            //  accounts = accountDB.AllAccounts;
+              accountDB = new AccountDB();
+              accounts = accountDB.AllAccounts;
         }
 
         #endregion
 
         #region Methods
-        public int generateID()
+        public int generateAccountID()
         {
             AccountDB accountDB = new AccountDB();
             accounts = accountDB.AllAccounts;

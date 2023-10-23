@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace INF2011S_Project.Data
 {
@@ -91,7 +92,7 @@ namespace INF2011S_Project.Data
 
             if (operation == DB.DBOperation.Add)
             {
-                aRow["ReferenceNumber"] = 11;//aBooking.ReferenceNumber;  //NOTE square brackets to indicate index of collections of fields in row.
+                aRow["ReferenceNumber"] = aBooking.ReferenceNumber;  //NOTE square brackets to indicate index of collections of fields in row.
                 aRow["GuestID"] = aBooking.GuestID;
                 aRow["NumberOfAdults"] = aBooking.NumberOfAdults;
                 aRow["NumberOfChildren"] = aBooking.NumberOfChildren;

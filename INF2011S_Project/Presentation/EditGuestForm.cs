@@ -20,6 +20,9 @@ namespace INF2011S_Project.Presentation
         private Guest guest;
         private Collection<Guest> guests;
         private GuestHandler guestHandler;
+        private NewBookingForm newBookingForm;
+        private DashBoardForm dashBoardForm;
+        private EditBookingForm editBookingForm;
 
         private DB.DBOperation operation;
         enum FormState { View = 0, Update = 1, Delete = 2 }
@@ -101,6 +104,30 @@ namespace INF2011S_Project.Presentation
             }
             guestHandler.FinalizeChanges(guest);
             state = FormState.View;
+        }
+
+        private void dashBoardButton_Click(object sender, EventArgs e)
+        {
+            dashBoardForm = new DashBoardForm();
+            dashBoardForm.StartPosition = FormStartPosition.CenterScreen;
+            dashBoardForm.Show();
+            this.Close();
+        }
+
+        private void makeABookingButton_Click(object sender, EventArgs e)
+        {
+            newBookingForm = new NewBookingForm();
+            newBookingForm.StartPosition = FormStartPosition.CenterScreen;
+            newBookingForm.Show();
+            this.Close();
+        }
+
+        private void editBookingButton_Click(object sender, EventArgs e)
+        {
+            editBookingForm = new EditBookingForm();
+            editBookingForm.StartPosition = FormStartPosition.CenterScreen;
+            editBookingForm.Show();
+            this.Close();
         }
     }
 }

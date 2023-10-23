@@ -12,12 +12,18 @@ using INF2011S_Project.Business;
 using INF2011S_Project.Data;
 using INF2011S_Project.Presentation;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Eventing.Reader;
 
 namespace INF2011S_Project.Presentation
 {
     public partial class NewBookingForm : Form
     {
         #region Data Members
+        public bool existing = false;
+        private EditBookingForm editBookingForm;
+        private EditGuestForm editGuestForm;
+        private DashBoardForm dashBoardForm;
+
         private Guest guest;
         private Collection<Guest> guests;
         private GuestHandler guestHandler;
@@ -45,7 +51,7 @@ namespace INF2011S_Project.Presentation
         public NewBookingForm()
         {
             InitializeComponent();
-          
+
         }
         #endregion
 
@@ -59,13 +65,15 @@ namespace INF2011S_Project.Presentation
             guest.CellPhone = cellPhoneTextBox.Text;
             guest.EmailAddress = emailTextBox.Text;
             guest.HomeAddress = addressTextBox.Text;
-           
+
         }
 
-        public void PopulateBookingObject()
+        public Booking PopulateBookingObject()
         {
-            Booking booking = new Booking();
-            booking.ReferenceNumber = bookingHandler.generateReferenceNumber();
+            Booking booking = new Booking
+            {
+                ReferenceNumber = bookingHandler.generateReferenceNumber()
+            };
             MessageBox.Show($"ReferenceNumber: {booking.ReferenceNumber}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             booking.GuestID = guest.GuestID;
@@ -75,22 +83,28 @@ namespace INF2011S_Project.Presentation
             booking.CheckInDate = checkInDateTimePicker.Value;
             booking.CheckOutDate = checkOutDateTimePicker.Value;
             booking.RoomNumber = availableRoom;
-
+            return booking;
         }
 
-        public void PopulateAccountObject()
+        public Account PopulateAccountObject()
         {
-            account = new Account();
-            account.AccountID = accountHandler.generateID();
-            account.GuestID = guest.GuestID;
-            account.CCDate = CCNoTextBox.Text;
-            account.CCNo = CCNoTextBox.Text;
-            account.Balance = bookingHandler.CalculateCost(checkIn, checkOut);
+                DateTime checkIn = checkInDateTimePicker.Value;
+                DateTime checkOut = checkOutDateTimePicker.Value;
+                account = new Account();
+                accountHandler = new AccountHandler();
+                account.AccountID = accountHandler.generateAccountID();
+                account.GuestID = guest.GuestID;
+                account.CCDate = expiryDateTextBox.Text;
+                account.CCNo = CCNoTextBox.Text;
+                account.Balance = bookingHandler.CalculateCost(checkIn, checkOut);
+                return account;
+
         }
         #endregion
 
         private void newConfirmButton_Click(object sender, EventArgs e)
         {
+            existing = true;
             guestHandler = new GuestHandler();
             PopulateGuestObject();
             guestHandler.DataMaintenance(guest, operation);
@@ -99,6 +113,7 @@ namespace INF2011S_Project.Presentation
 
         private void oldConfirmButton_Click(object sender, EventArgs e)
         {
+            existing = true;
             guestHandler = new GuestHandler();
             guest = guestHandler.FindName(existingGuestFirstNameTextBox.Text, existingGuestSecondNameTextBox.Text);
             guest.GuestID = guestHandler.generateID();
@@ -109,18 +124,20 @@ namespace INF2011S_Project.Presentation
         private void confirmBookingButton_Click(object sender, EventArgs e)
         {
             AccountHandler accountHandler = new AccountHandler();  
-            PopulateAccountObject();
+            account = PopulateAccountObject();
             accountHandler.DataMaintenance(account, operation);
             accountHandler.FinalizeChanges(account);
-
-            bookingHandler = new BookingHandler();
-            PopulateBookingObject();
+                     
+            booking = PopulateBookingObject();
             bookingHandler.DataMaintenance(booking, operation);
             bookingHandler.FinalizeChanges(booking);
+            MessageBox.Show($"AccountID number: {account.AccountID} \nAccount CCNo: {account.CCNo} \nAccount CCDate: {account.CCDate} \nBalance: {account.Balance}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void checkAvailabilityButton_Click(object sender, EventArgs e)
         {
+            if (existing == false) { MessageBox.Show($"Please click confirm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             bookingHandler = new BookingHandler();
             checkIn = checkInDateTimePicker.Value;
             checkOut = checkOutDateTimePicker.Value;
@@ -149,6 +166,53 @@ namespace INF2011S_Project.Presentation
                 numberOfChildrenTextBox.Enabled = false;
                 confirmBookingButton.Enabled = false;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            existing = false;
+            panel3.Visible = false;
+            panel2.Visible = true;
+            label14.Visible = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            existing = true;
+            panel2.Visible = false;
+            panel3.Visible = true;
+            label14.Visible = false;
+        }
+
+        private void editBookingButton_Click(object sender, EventArgs e)
+        {
+            editBookingForm = new EditBookingForm();
+            editBookingForm.StartPosition = FormStartPosition.CenterScreen;
+            editBookingForm.Show();
+            this.Close();
+        }
+
+        private void editGuestButton_Click(object sender, EventArgs e)
+        {
+            editGuestForm = new EditGuestForm();
+            editGuestForm.StartPosition = FormStartPosition.CenterScreen;
+            editGuestForm.Show();
+            this.Close();
+        }
+
+        private void dashBoardButton_Click(object sender, EventArgs e)
+        {
+            dashBoardForm = new DashBoardForm();
+            dashBoardForm.StartPosition = FormStartPosition.CenterScreen;
+            dashBoardForm.Show();
+            this.Close();
+        }
+
+        private void NewBookingForm_Load(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            panel3.Visible = false;
+            label14.Visible = true;
         }
     }
 }

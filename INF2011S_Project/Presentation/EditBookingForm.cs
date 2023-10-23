@@ -19,10 +19,13 @@ namespace INF2011S_Project.Presentation
     public partial class EditBookingForm : Form
     {
         #region Data Members
+        private NewBookingForm newBookingForm;
         private BookingDB bookingDB;
         private Booking booking;
         private Collection<Booking> bookings;
         private BookingHandler bookingHandler;
+        private EditGuestForm editGuestForm;
+        private DashBoardForm dashBoardForm;
 
         private DB.DBOperation operation;
         enum FormState { View = 0, Update = 1, Delete = 2}
@@ -53,11 +56,12 @@ namespace INF2011S_Project.Presentation
             else { Console.WriteLine("Booking not found, re-enter ReferenceNumber"); }
         }
 
-        public void PopulateObject(Booking booking)
+        public Booking PopulateObject(Booking booking)
         {
             booking.NumberOfAdults = Convert.ToInt32(numberOfAdultsTextBox.Text);
             booking.NumberOfChildren = Convert.ToInt32(numberOfChildrenTextBox.Text);
             booking.SpecialRequests = specialRequestsTextBox.Text;
+            return booking;
         }
         #endregion
         private void showAllBookingsButton_Click(object sender, EventArgs e)
@@ -88,19 +92,43 @@ namespace INF2011S_Project.Presentation
 
         private void confirmChangesButton_Click(object sender, EventArgs e)
         {
-            
+            booking = PopulateObject(booking);
 
             if (state == FormState.Update)
             {
-                PopulateObject(booking);
                 bookingHandler.DataMaintenance(booking, DB.DBOperation.Update);
             }
-            else
+            else if (state == FormState.Delete)
             {
                 bookingHandler.DataMaintenance(booking, DB.DBOperation.Delete);
             }
+            PopulateBookingDetails(booking);
             bookingHandler.FinalizeChanges(booking);
             state = FormState.View;
+        }
+
+        private void makeABookingButton_Click(object sender, EventArgs e)
+        {
+            newBookingForm = new NewBookingForm();
+            newBookingForm.StartPosition = FormStartPosition.CenterScreen;
+            newBookingForm.Show();
+            this.Close();
+        }
+
+        private void editGuestButton_Click(object sender, EventArgs e)
+        {
+            editGuestForm = new EditGuestForm();
+            editGuestForm.StartPosition = FormStartPosition.CenterScreen;
+            editGuestForm.Show();
+            this.Close();
+        }
+
+        private void dashBoardButton_Click(object sender, EventArgs e)
+        {
+            dashBoardForm = new DashBoardForm();
+            dashBoardForm.StartPosition = FormStartPosition.CenterScreen;
+            dashBoardForm.Show();
+            this.Close();
         }
     }
 }

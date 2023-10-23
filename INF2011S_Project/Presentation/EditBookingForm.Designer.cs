@@ -169,6 +169,7 @@
             this.makeABookingButton.TabIndex = 4;
             this.makeABookingButton.Text = "Make a Booking";
             this.makeABookingButton.UseVisualStyleBackColor = true;
+            this.makeABookingButton.Click += new System.EventHandler(this.makeABookingButton_Click);
             // 
             // editGuestButton
             // 
@@ -178,6 +179,7 @@
             this.editGuestButton.TabIndex = 3;
             this.editGuestButton.Text = "Edit Guest";
             this.editGuestButton.UseVisualStyleBackColor = true;
+            this.editGuestButton.Click += new System.EventHandler(this.editGuestButton_Click);
             // 
             // editBookingButton
             // 
@@ -196,6 +198,7 @@
             this.dashBoardButton.TabIndex = 1;
             this.dashBoardButton.Text = "Dashboard";
             this.dashBoardButton.UseVisualStyleBackColor = true;
+            this.dashBoardButton.Click += new System.EventHandler(this.dashBoardButton_Click);
             // 
             // showAllBookingsButton
             // 

@@ -65,6 +65,7 @@
             // 
             this.passWordTextBox.Location = new System.Drawing.Point(29, 257);
             this.passWordTextBox.Name = "passWordTextBox";
+            this.passWordTextBox.PasswordChar = '*';
             this.passWordTextBox.Size = new System.Drawing.Size(316, 22);
             this.passWordTextBox.TabIndex = 4;
             // 
@@ -102,13 +103,13 @@
             this.signInLabel.TabIndex = 0;
             this.signInLabel.Text = "Sign In";
             // 
-            // LogIn
+            // LogInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 525);
             this.Controls.Add(this.panel4);
-            this.Name = "LogIn";
+            this.Name = "LogInForm";
             this.Text = "Phumla Kamnandi Hotels";
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();

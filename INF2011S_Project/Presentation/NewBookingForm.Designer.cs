@@ -76,6 +76,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -104,6 +105,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Existing Guest";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -113,6 +115,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "New Guest";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // makeABookingButton
             // 
@@ -131,6 +134,7 @@
             this.editGuestButton.TabIndex = 3;
             this.editGuestButton.Text = "Edit Guest";
             this.editGuestButton.UseVisualStyleBackColor = true;
+            this.editGuestButton.Click += new System.EventHandler(this.editGuestButton_Click);
             // 
             // editBookingButton
             // 
@@ -140,6 +144,7 @@
             this.editBookingButton.TabIndex = 2;
             this.editBookingButton.Text = "Edit Booking";
             this.editBookingButton.UseVisualStyleBackColor = true;
+            this.editBookingButton.Click += new System.EventHandler(this.editBookingButton_Click);
             // 
             // dashBoardButton
             // 
@@ -149,6 +154,7 @@
             this.dashBoardButton.TabIndex = 1;
             this.dashBoardButton.Text = "Dashboard";
             this.dashBoardButton.UseVisualStyleBackColor = true;
+            this.dashBoardButton.Click += new System.EventHandler(this.dashBoardButton_Click);
             // 
             // welcomeLabel
             // 
@@ -528,17 +534,28 @@
             this.label10.TabIndex = 55;
             this.label10.Text = "Number of Adults";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(208, 1);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(177, 16);
+            this.label14.TabIndex = 56;
+            this.label14.Text = "Select New or Existing Guest";
+            // 
             // NewBookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 553);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "NewBookingForm";
             this.Text = "NewBookingForm";
+            this.Load += new System.EventHandler(this.NewBookingForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -548,6 +565,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -601,5 +619,6 @@
         private System.Windows.Forms.DateTimePicker checkOutDateTimePicker;
         private System.Windows.Forms.Button confirmBookingButton;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label label14;
     }
 }

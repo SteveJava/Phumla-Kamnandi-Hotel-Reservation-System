@@ -27,12 +27,17 @@ namespace INF2011S_Project
         {
             Receptionist receptionist = new Receptionist();
             ReceptionistHandler receptionistHandler = new ReceptionistHandler();
-            if ((receptionistHandler.Find(Convert.ToInt32(employeeIDTextBox.Text)) != null) && (receptionistHandler.FindPassWord((passWordTextBox.Text)) != null)) 
+            if ((receptionistHandler.Find(Convert.ToInt32(employeeIDTextBox.Text)) != null) && (receptionistHandler.FindPassWord((passWordTextBox.Text)) != null))
             {
                 dashBoardForm = new DashBoardForm();
+                dashBoardForm.StartPosition = FormStartPosition.CenterScreen;
                 dashBoardForm.Show();
             }
-            
+            else
+            {
+                MessageBox.Show($"Incorrect login details, please try again", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
     }
 }
