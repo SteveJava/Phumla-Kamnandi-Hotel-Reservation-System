@@ -55,13 +55,15 @@ namespace INF2011S_Project.Presentation
             else { Console.WriteLine("Guest not found, re-enter GuestID"); }
         }
 
-        public void PopulateObject(Guest guest)
+        public Guest PopulateObject(Guest guest)
         {
+            guest.GuestID = Convert.ToInt32(guestIDTextBox.Text);
             guest.FirstName = firstNameTextBox.Text;
             guest.SecondName = surNameTextBox.Text;
             guest.CellPhone = cellPhoneTextBox.Text;
             guest.EmailAddress = emailTextBox.Text;
             guest.HomeAddress = addressTextBox.Text;
+            return guest;
         }
         #endregion
 
@@ -95,14 +97,17 @@ namespace INF2011S_Project.Presentation
 
             if (state == FormState.Update)
             {
-                PopulateObject(guest);
+                guest = PopulateObject(guest);
                 guestHandler.DataMaintenance(guest, DB.DBOperation.Update);
+                guestHandler.FinalizeChanges(guest);
             }
             else
             {
-                guestHandler.DataMaintenance(guest, DB.DBOperation.Delete);
+              //  guest.GuestID = Convert.ToInt32(guestIDTextBox.Text);
+              //  guestHandler.DataMaintenance(guest, DB.DBOperation.Delete);
+              //  guestHandler.FinalizeChanges(guest);
             }
-            guestHandler.FinalizeChanges(guest);
+            
             state = FormState.View;
         }
 

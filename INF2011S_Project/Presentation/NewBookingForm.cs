@@ -115,23 +115,41 @@ namespace INF2011S_Project.Presentation
         {
             existing = true;
             guestHandler = new GuestHandler();
-            guest = guestHandler.FindName(existingGuestFirstNameTextBox.Text, existingGuestSecondNameTextBox.Text);
+            this.guest = guestHandler.FindName(existingGuestFirstNameTextBox.Text, existingGuestSecondNameTextBox.Text);
             guest.GuestID = guestHandler.generateID();
             guestHandler.DataMaintenance(guest, operation);
             guestHandler.FinalizeChanges(guest);
+            AccountHandler accountHandler = new AccountHandler();
+            
+          
         }
 
         private void confirmBookingButton_Click(object sender, EventArgs e)
         {
-            AccountHandler accountHandler = new AccountHandler();  
-            account = PopulateAccountObject();
-            accountHandler.DataMaintenance(account, operation);
-            accountHandler.FinalizeChanges(account);
-                     
-            booking = PopulateBookingObject();
-            bookingHandler.DataMaintenance(booking, operation);
-            bookingHandler.FinalizeChanges(booking);
-            MessageBox.Show($"AccountID number: {account.AccountID} \nAccount CCNo: {account.CCNo} \nAccount CCDate: {account.CCDate} \nBalance: {account.Balance}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            AccountHandler accountHandler = new AccountHandler();
+            if (existing == false)
+            {
+                account = PopulateAccountObject();
+                accountHandler.DataMaintenance(account, operation);
+                accountHandler.FinalizeChanges(account);
+                booking = PopulateBookingObject();
+                bookingHandler.DataMaintenance(booking, operation);
+                bookingHandler.FinalizeChanges(booking);
+                MessageBox.Show($"AccountID number: {account.AccountID} \nAccount CCNo: {account.CCNo} \nAccount CCDate: {account.CCDate} \nBalance: {account.Balance}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+               
+                account = accountHandler.Find(1);
+                account.Balance = bookingHandler.CalculateCost(checkInDateTimePicker.Value, checkOutDateTimePicker.Value);
+                booking = PopulateBookingObject();
+                bookingHandler.DataMaintenance(booking, operation);
+                bookingHandler.FinalizeChanges(booking);
+                MessageBox.Show($"AccountID number: {account.AccountID} \nAccount CCNo: {account.CCNo} \nAccount CCDate: {account.CCDate} \nBalance: {account.Balance}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
 
         }
 

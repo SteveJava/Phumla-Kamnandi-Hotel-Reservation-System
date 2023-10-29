@@ -58,6 +58,7 @@ namespace INF2011S_Project.Presentation
 
         public Booking PopulateObject(Booking booking)
         {
+            booking.ReferenceNumber = Convert.ToInt32(referenceNumberTextBox.Text);
             booking.NumberOfAdults = Convert.ToInt32(numberOfAdultsTextBox.Text);
             booking.NumberOfChildren = Convert.ToInt32(numberOfChildrenTextBox.Text);
             booking.SpecialRequests = specialRequestsTextBox.Text;
@@ -92,18 +93,21 @@ namespace INF2011S_Project.Presentation
 
         private void confirmChangesButton_Click(object sender, EventArgs e)
         {
-            booking = PopulateObject(booking);
+            
 
             if (state == FormState.Update)
             {
+                booking = PopulateObject(booking);
                 bookingHandler.DataMaintenance(booking, DB.DBOperation.Update);
+                bookingHandler.FinalizeChanges(booking);
             }
             else if (state == FormState.Delete)
             {
                 bookingHandler.DataMaintenance(booking, DB.DBOperation.Delete);
+                bookingHandler.FinalizeChanges(booking);
             }
             PopulateBookingDetails(booking);
-            bookingHandler.FinalizeChanges(booking);
+            
             state = FormState.View;
         }
 
