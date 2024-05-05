@@ -1,7 +1,4 @@
-# Phumla-Kamnandi-Hotel-Reservation-System
-Phumla Kamnandi Hotel Reservation System
-INF2011S 2023
-
+# Hotel Reservation System
 
 ## Description
 A user-friendly Hotel Reservation Ssytem designed to be used by a receptionsist
@@ -26,7 +23,7 @@ A user-friendly Hotel Reservation Ssytem designed to be used by a receptionsist
 - Windows 10 or higher
 - Visual Studio IDE with .NET frameworks for Windows Form Applications Installed
   
-## Usage
+## How to use
 
 1. Clone the Repository:
 git clone https://github.com/https://github.com/SteveJava/Phumla-Kamnandi-Hotel-Reservation-System.git
